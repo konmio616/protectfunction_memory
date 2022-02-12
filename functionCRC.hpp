@@ -1,5 +1,8 @@
 #pragma once
-#include "includes.hpp"
+#include <Windows.h>
+#include <vector>
+#include <thread>
+#include <chrono>
 
 typedef struct _FunctionInformation
 {
