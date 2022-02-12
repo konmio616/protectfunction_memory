@@ -6,9 +6,9 @@
 
 typedef struct _FunctionInformation
 {
-	DWORD64 Address;
+    DWORD64 Address;
     DWORD64 Checksum;
-	SIZE_T Size;
+    SIZE_T Size;
 
 } FunctionInformation;
 
@@ -36,7 +36,7 @@ static const DWORD64 CRC64_Table[0x100] =
 class functionCRC
 {
 private:
-	std::vector<FunctionInformation> functionList;
+    std::vector<FunctionInformation> functionList;
 
     SIZE_T CalcTargetSize(DWORD64 _target)
     {
@@ -63,19 +63,19 @@ private:
     }
 
 public:
-	static functionCRC& GetSingleton()
-	{
-		static functionCRC fCRC;
-		return fCRC;
-	}
+    static functionCRC& GetSingleton()
+    {
+	static functionCRC fCRC;
+	return fCRC;
+    }
 
     std::vector<FunctionInformation> GetFunctionList()
     {
         return functionList;
     }
 
-	void AddFunction(DWORD64 target)
-	{
+    void AddFunction(DWORD64 target)
+    {
         DWORD64 oTarget = target;
         if(*(BYTE*)(target) == 0xE9)//jmp case
             oTarget = target + *(DWORD*)(target + 0x1) + 0x5;
@@ -94,7 +94,7 @@ public:
         funcInfo.Checksum = tChecksum;
 
         functionList.push_back(funcInfo);
-	}
+    }
 
     void DeleteFunction(DWORD64 target)
     {
